@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE xml>
+<!-- scan:当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true。 scanPeriod:设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。 
+	debug:当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。 -->
+<configuration debug="false" scan="false" scanPeriod="30 seconds">
+	<!-- 打印sql信息 -->
+	<!-- <logger name="com.ibatis" level="DEBUG" /> <logger name="com.ibatis.common.jdbc.SimpleDataSource" 
+		level="DEBUG" /> <logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG" 
+		/> <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG" 
+		/> <logger name="java.sql.Connection" level="DEBUG" /> <logger name="java.sql.Statement" 
+		level="DEBUG" /> -->
+	<logger name="java.sql.PreparedStatement" level="ERROR" />
+	<!-- 配置文件输出路径 -->
+	<property name="logBase" value="/work/www/tomcat/m/A/logs" />
+	<!-- 输出信息到控制台 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss}|%level|%class:%line|%m%n</pattern>
+		</encoder>
+	</appender>
+	<!-- error按日期区分的滚动日志 -->
+	<appender name="ERROR-OUT"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${logBase}/error-log.log</file>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss}|%level|%class:%line|%m%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>${logBase}/error.%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+			<!-- keep 30 days' worth of history <maxHistory>30</maxHistory> -->
+		</rollingPolicy>
+	</appender>
+
+	<!-- info按文件大小区分的滚动日志 -->
+	<appender name="INFO-OUT"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${logBase}/info.log</file>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss}|%level|%class:%line|%m%n</pattern>
+		</encoder>
+		<!--过滤器，执行一个过滤器会有返回个枚举值，即DENY，NEUTRAL，ACCEPT其中之一。 返回DENY，日志将立即被抛弃不再经过其他过滤器； 
+			返回NEUTRAL，有序列表里的下个过滤器过接着处理日志； 返回ACCEPT，日志会被立即处理，不再经过剩余过滤器 -->
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level> <!--设置过滤级别 -->
+			<onMatch>ACCEPT</onMatch><!--用于配置符合过滤条件的操作 -->
+			<onMismatch>DENY</onMismatch><!--用于配置不符合过滤条件的操作 -->
+		</filter>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>${logBase}/info.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<!-- keep 30 days' worth of history <maxHistory>30</maxHistory> -->
+		</rollingPolicy>
+	</appender>
+
+	<!-- debug按日期和大小区分的滚动日志 -->
+	<appender name="DEBUG-OUT"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!--日志输出位置 可相对、和绝对路径 -->
+		<file>${logBase}/debug.log</file>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss}|%level|%class:%line|%m%n</pattern>
+		</encoder>
+
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>DEBUG</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logBase}/debug-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"> 
+				<maxFileSize>100MB</maxFileSize> </timeBasedFileNamingAndTriggeringPolicy> -->
+		</rollingPolicy>
+
+	</appender>
+	<!-- logback为java中的包 -->
+	<!-- <logger name="logback" />将控制logback包下的所有类的日志的打印，但是并没用设置打印级别，所以继承他的上级<root>的日志级别“DEBUG”； 
+		没有设置addtivity，默认为true，将此loger的打印信息向上级传递；没有设置appender，此loger本身不打印任何信息 当执行logback.LogbackDemo类的main方法时，因为LogbackDemo 
+		在包logback中，所以首先执行<logger name="logback" />，将级别为“DEBUG”及大于“DEBUG”的日志信息传递给root，本身并不打印； 
+		root接到下级传递的信息，交给已经配置好的名为“STDOUT”的appender处理，“STDOUT”appender将信息打印到控制台 -->
+	<!--<root level="debug">将root的打印级别设置为“debug”，appender-ref ref指定了名字为“STDOUT”的appender -->
+	<root level="ERROR">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="ERROR-OUT" />
+		<appender-ref ref="INFO-OUT" />
+		<appender-ref ref="DEBUG-OUT" />
+	</root>
+</configuration>

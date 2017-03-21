@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wzk.mvc.dao.MyOpencodeInfoMapper">
+  <resultMap id="BaseResultMap" type="com.wzk.mvc.model.MyOpencodeInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="expect" jdbcType="BIGINT" property="expect" />
+    <result column="opendate" jdbcType="BIGINT" property="opendate" />
+    <result column="opencode" jdbcType="VARCHAR" property="opencode" />
+    <result column="firstcode" jdbcType="INTEGER" property="firstcode" />
+    <result column="secondcode" jdbcType="INTEGER" property="secondcode" />
+    <result column="thirdcode" jdbcType="INTEGER" property="thirdcode" />
+    <result column="fourthcode" jdbcType="INTEGER" property="fourthcode" />
+    <result column="lastcode" jdbcType="INTEGER" property="lastcode" />
+    <result column="last_odd_gap" jdbcType="INTEGER" property="lastOddGap" />
+    <result column="last_even_gap" jdbcType="INTEGER" property="lastEvenGap" />
+    <result column="last_big_gap" jdbcType="INTEGER" property="lastBigGap" />
+    <result column="last_small_gap" jdbcType="INTEGER" property="lastSmallGap" />
+    <result column="last_big_small_gap" jdbcType="INTEGER" property="lastBigSmallGap" />
+    <result column="last_even_odd_gap" jdbcType="INTEGER" property="lastEvenOddGap" />
+    <result column="fourth_odd_gap" jdbcType="INTEGER" property="fourthOddGap" />
+    <result column="fourth_even_gap" jdbcType="INTEGER" property="fourthEvenGap" />
+    <result column="fourth_big_gap" jdbcType="INTEGER" property="fourthBigGap" />
+    <result column="fourth_small_gap" jdbcType="INTEGER" property="fourthSmallGap" />
+    <result column="fourth_big_small_gap" jdbcType="INTEGER" property="fourthBigSmallGap" />
+    <result column="fourth_even_odd_gap" jdbcType="INTEGER" property="fourthEvenOddGap" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, expect, opendate, opencode, firstcode, secondcode, thirdcode, fourthcode, lastcode, 
+    last_odd_gap, last_even_gap, last_big_gap, last_small_gap, last_big_small_gap, last_even_odd_gap, 
+    fourth_odd_gap, fourth_even_gap, fourth_big_gap, fourth_small_gap, fourth_big_small_gap, 
+    fourth_even_odd_gap, create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from my_opencode_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from my_opencode_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wzk.mvc.model.MyOpencodeInfo">
+    insert into my_opencode_info (id, expect, opendate, 
+      opencode, firstcode, secondcode, 
+      thirdcode, fourthcode, lastcode, 
+      last_odd_gap, last_even_gap, last_big_gap, 
+      last_small_gap, last_big_small_gap, last_even_odd_gap, 
+      fourth_odd_gap, fourth_even_gap, fourth_big_gap, 
+      fourth_small_gap, fourth_big_small_gap, fourth_even_odd_gap, 
+      create_time, modify_time)
+    values (#{id,jdbcType=BIGINT}, #{expect,jdbcType=BIGINT}, #{opendate,jdbcType=BIGINT}, 
+      #{opencode,jdbcType=VARCHAR}, #{firstcode,jdbcType=INTEGER}, #{secondcode,jdbcType=INTEGER}, 
+      #{thirdcode,jdbcType=INTEGER}, #{fourthcode,jdbcType=INTEGER}, #{lastcode,jdbcType=INTEGER}, 
+      #{lastOddGap,jdbcType=INTEGER}, #{lastEvenGap,jdbcType=INTEGER}, #{lastBigGap,jdbcType=INTEGER}, 
+      #{lastSmallGap,jdbcType=INTEGER}, #{lastBigSmallGap,jdbcType=INTEGER}, #{lastEvenOddGap,jdbcType=INTEGER}, 
+      #{fourthOddGap,jdbcType=INTEGER}, #{fourthEvenGap,jdbcType=INTEGER}, #{fourthBigGap,jdbcType=INTEGER}, 
+      #{fourthSmallGap,jdbcType=INTEGER}, #{fourthBigSmallGap,jdbcType=INTEGER}, #{fourthEvenOddGap,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wzk.mvc.model.MyOpencodeInfo">
+    insert into my_opencode_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="expect != null">
+        expect,
+      </if>
+      <if test="opendate != null">
+        opendate,
+      </if>
+      <if test="opencode != null">
+        opencode,
+      </if>
+      <if test="firstcode != null">
+        firstcode,
+      </if>
+      <if test="secondcode != null">
+        secondcode,
+      </if>
+      <if test="thirdcode != null">
+        thirdcode,
+      </if>
+      <if test="fourthcode != null">
+        fourthcode,
+      </if>
+      <if test="lastcode != null">
+        lastcode,
+      </if>
+      <if test="lastOddGap != null">
+        last_odd_gap,
+      </if>
+      <if test="lastEvenGap != null">
+        last_even_gap,
+      </if>
+      <if test="lastBigGap != null">
+        last_big_gap,
+      </if>
+      <if test="lastSmallGap != null">
+        last_small_gap,
+      </if>
+      <if test="lastBigSmallGap != null">
+        last_big_small_gap,
+      </if>
+      <if test="lastEvenOddGap != null">
+        last_even_odd_gap,
+      </if>
+      <if test="fourthOddGap != null">
+        fourth_odd_gap,
+      </if>
+      <if test="fourthEvenGap != null">
+        fourth_even_gap,
+      </if>
+      <if test="fourthBigGap != null">
+        fourth_big_gap,
+      </if>
+      <if test="fourthSmallGap != null">
+        fourth_small_gap,
+      </if>
+      <if test="fourthBigSmallGap != null">
+        fourth_big_small_gap,
+      </if>
+      <if test="fourthEvenOddGap != null">
+        fourth_even_odd_gap,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="expect != null">
+        #{expect,jdbcType=BIGINT},
+      </if>
+      <if test="opendate != null">
+        #{opendate,jdbcType=BIGINT},
+      </if>
+      <if test="opencode != null">
+        #{opencode,jdbcType=VARCHAR},
+      </if>
+      <if test="firstcode != null">
+        #{firstcode,jdbcType=INTEGER},
+      </if>
+      <if test="secondcode != null">
+        #{secondcode,jdbcType=INTEGER},
+      </if>
+      <if test="thirdcode != null">
+        #{thirdcode,jdbcType=INTEGER},
+      </if>
+      <if test="fourthcode != null">
+        #{fourthcode,jdbcType=INTEGER},
+      </if>
+      <if test="lastcode != null">
+        #{lastcode,jdbcType=INTEGER},
+      </if>
+      <if test="lastOddGap != null">
+        #{lastOddGap,jdbcType=INTEGER},
+      </if>
+      <if test="lastEvenGap != null">
+        #{lastEvenGap,jdbcType=INTEGER},
+      </if>
+      <if test="lastBigGap != null">
+        #{lastBigGap,jdbcType=INTEGER},
+      </if>
+      <if test="lastSmallGap != null">
+        #{lastSmallGap,jdbcType=INTEGER},
+      </if>
+      <if test="lastBigSmallGap != null">
+        #{lastBigSmallGap,jdbcType=INTEGER},
+      </if>
+      <if test="lastEvenOddGap != null">
+        #{lastEvenOddGap,jdbcType=INTEGER},
+      </if>
+      <if test="fourthOddGap != null">
+        #{fourthOddGap,jdbcType=INTEGER},
+      </if>
+      <if test="fourthEvenGap != null">
+        #{fourthEvenGap,jdbcType=INTEGER},
+      </if>
+      <if test="fourthBigGap != null">
+        #{fourthBigGap,jdbcType=INTEGER},
+      </if>
+      <if test="fourthSmallGap != null">
+        #{fourthSmallGap,jdbcType=INTEGER},
+      </if>
+      <if test="fourthBigSmallGap != null">
+        #{fourthBigSmallGap,jdbcType=INTEGER},
+      </if>
+      <if test="fourthEvenOddGap != null">
+        #{fourthEvenOddGap,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wzk.mvc.model.MyOpencodeInfo">
+    update my_opencode_info
+    <set>
+      <if test="expect != null">
+        expect = #{expect,jdbcType=BIGINT},
+      </if>
+      <if test="opendate != null">
+        opendate = #{opendate,jdbcType=BIGINT},
+      </if>
+      <if test="opencode != null">
+        opencode = #{opencode,jdbcType=VARCHAR},
+      </if>
+      <if test="firstcode != null">
+        firstcode = #{firstcode,jdbcType=INTEGER},
+      </if>
+      <if test="secondcode != null">
+        secondcode = #{secondcode,jdbcType=INTEGER},
+      </if>
+      <if test="thirdcode != null">
+        thirdcode = #{thirdcode,jdbcType=INTEGER},
+      </if>
+      <if test="fourthcode != null">
+        fourthcode = #{fourthcode,jdbcType=INTEGER},
+      </if>
+      <if test="lastcode != null">
+        lastcode = #{lastcode,jdbcType=INTEGER},
+      </if>
+      <if test="lastOddGap != null">
+        last_odd_gap = #{lastOddGap,jdbcType=INTEGER},
+      </if>
+      <if test="lastEvenGap != null">
+        last_even_gap = #{lastEvenGap,jdbcType=INTEGER},
+      </if>
+      <if test="lastBigGap != null">
+        last_big_gap = #{lastBigGap,jdbcType=INTEGER},
+      </if>
+      <if test="lastSmallGap != null">
+        last_small_gap = #{lastSmallGap,jdbcType=INTEGER},
+      </if>
+      <if test="lastBigSmallGap != null">
+        last_big_small_gap = #{lastBigSmallGap,jdbcType=INTEGER},
+      </if>
+      <if test="lastEvenOddGap != null">
+        last_even_odd_gap = #{lastEvenOddGap,jdbcType=INTEGER},
+      </if>
+      <if test="fourthOddGap != null">
+        fourth_odd_gap = #{fourthOddGap,jdbcType=INTEGER},
+      </if>
+      <if test="fourthEvenGap != null">
+        fourth_even_gap = #{fourthEvenGap,jdbcType=INTEGER},
+      </if>
+      <if test="fourthBigGap != null">
+        fourth_big_gap = #{fourthBigGap,jdbcType=INTEGER},
+      </if>
+      <if test="fourthSmallGap != null">
+        fourth_small_gap = #{fourthSmallGap,jdbcType=INTEGER},
+      </if>
+      <if test="fourthBigSmallGap != null">
+        fourth_big_small_gap = #{fourthBigSmallGap,jdbcType=INTEGER},
+      </if>
+      <if test="fourthEvenOddGap != null">
+        fourth_even_odd_gap = #{fourthEvenOddGap,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wzk.mvc.model.MyOpencodeInfo">
+    update my_opencode_info
+    set expect = #{expect,jdbcType=BIGINT},
+      opendate = #{opendate,jdbcType=BIGINT},
+      opencode = #{opencode,jdbcType=VARCHAR},
+      firstcode = #{firstcode,jdbcType=INTEGER},
+      secondcode = #{secondcode,jdbcType=INTEGER},
+      thirdcode = #{thirdcode,jdbcType=INTEGER},
+      fourthcode = #{fourthcode,jdbcType=INTEGER},
+      lastcode = #{lastcode,jdbcType=INTEGER},
+      last_odd_gap = #{lastOddGap,jdbcType=INTEGER},
+      last_even_gap = #{lastEvenGap,jdbcType=INTEGER},
+      last_big_gap = #{lastBigGap,jdbcType=INTEGER},
+      last_small_gap = #{lastSmallGap,jdbcType=INTEGER},
+      last_big_small_gap = #{lastBigSmallGap,jdbcType=INTEGER},
+      last_even_odd_gap = #{lastEvenOddGap,jdbcType=INTEGER},
+      fourth_odd_gap = #{fourthOddGap,jdbcType=INTEGER},
+      fourth_even_gap = #{fourthEvenGap,jdbcType=INTEGER},
+      fourth_big_gap = #{fourthBigGap,jdbcType=INTEGER},
+      fourth_small_gap = #{fourthSmallGap,jdbcType=INTEGER},
+      fourth_big_small_gap = #{fourthBigSmallGap,jdbcType=INTEGER},
+      fourth_even_odd_gap = #{fourthEvenOddGap,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectOneByExpect" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from my_opencode_info
+    where expect = #{expect,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectOneByLast" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from my_opencode_info
+   order by id desc limit 1
+  </select>
+</mapper>

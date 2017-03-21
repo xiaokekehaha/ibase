@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-4.1.xsd 
+     	http://www.springframework.org/schema/mvc 
+     	http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd"
+	default-lazy-init="true">
+
+	<!-- 扫描文件（自动将各层注入） -->
+	<context:component-scan base-package="com.wzk.mvc.service" />
+    <context:component-scan base-package="com.wzk.mvc.controller" />
+	
+	<!-- 处理请求的映射，通过注解，把一个URL映射到Controller类上   -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
+	
+	<!-- 处理请求的映射，通过注解，把一个URL映射到Controller类上 --> 
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">  
+	        <list>  
+	            <bean class="org.springframework.http.converter.StringHttpMessageConverter">  
+	               <property name="supportedMediaTypes">
+						<list>
+							<value>text/plain;charset=UTF-8</value>
+						</list>
+					</property>
+	            </bean>
+	            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+	        </list>  
+	    </property>  
+	</bean>
+	
+	<!-- 国际化 -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basenames="globalMessages" />
+	
+	<!-- 文件上传 -->
+	<!-- <bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="-1" /> Max uploaded file size: 1MB 1048576
+		<property name="defaultEncoding" value="UTF-8"/>
+	</bean> -->
+	
+	<!-- 静态资源映射，不使用拦截器 -->
+    <mvc:resources location="/css/" mapping="/css/**" /><!-- 可设置缓存时间：cache-period="864000"  24 * 3600 * 10 -->
+	<mvc:resources location="/images/" mapping="/images/**" />
+	<mvc:resources location="/scripts/" mapping="/scripts/**" />
+	<mvc:resources location="/plugins/" mapping="/plugins/**" />
+	<mvc:resources location="/html/" mapping="/html/**" />
+
+	<!-- 视图解析器 -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:prefix="/WEB-INF/pages/" p:suffix=".jsp" />
+
+	<!-- 自定义拦截链配置 -->  
+    <!-- <mvc:interceptors>  
+     	<mvc:interceptor>  
+            需拦截的地址
+            <mvc:mapping path="/test/*" />
+            <bean class="com.wzk.mvc.interceptor.AuthorizeInterceptor">
+            	允许不拦截的资源
+            	<property name="allowUrls">
+            		<list>
+            			<value>/test/test.htm</value>
+            		</list>
+            	</property>
+            </bean>  
+        </mvc:interceptor>  
+     </mvc:interceptors>  -->
+</beans>

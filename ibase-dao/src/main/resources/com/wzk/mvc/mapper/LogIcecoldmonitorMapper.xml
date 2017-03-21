@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wzk.mvc.dao.LogIcecoldmonitorMapper" >
+  <resultMap id="BaseResultMap" type="com.wzk.mvc.model.LogIcecoldmonitor" >
+    <id column="log_Id" property="logId" jdbcType="INTEGER" />
+    <result column="log_level" property="logLevel" jdbcType="VARCHAR" />
+    <result column="log_category" property="logCategory" jdbcType="VARCHAR" />
+    <result column="log_thread" property="logThread" jdbcType="VARCHAR" />
+    <result column="log_time" property="logTime" jdbcType="VARCHAR" />
+    <result column="log_location" property="logLocation" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wzk.mvc.model.LogIcecoldmonitor" extends="BaseResultMap" >
+    <result column="log_note" property="logNote" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    log_Id, log_level, log_category, log_thread, log_time, log_location
+  </sql>
+  <sql id="Blob_Column_List" >
+    log_note
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from log_icecoldmonitor
+    where log_Id = #{logId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from log_icecoldmonitor
+    where log_Id = #{logId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wzk.mvc.model.LogIcecoldmonitor" >
+    insert into log_icecoldmonitor (log_Id, log_level, log_category, 
+      log_thread, log_time, log_location, 
+      log_note)
+    values (#{logId,jdbcType=INTEGER}, #{logLevel,jdbcType=VARCHAR}, #{logCategory,jdbcType=VARCHAR}, 
+      #{logThread,jdbcType=VARCHAR}, #{logTime,jdbcType=VARCHAR}, #{logLocation,jdbcType=VARCHAR}, 
+      #{logNote,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wzk.mvc.model.LogIcecoldmonitor" >
+    insert into log_icecoldmonitor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        log_Id,
+      </if>
+      <if test="logLevel != null" >
+        log_level,
+      </if>
+      <if test="logCategory != null" >
+        log_category,
+      </if>
+      <if test="logThread != null" >
+        log_thread,
+      </if>
+      <if test="logTime != null" >
+        log_time,
+      </if>
+      <if test="logLocation != null" >
+        log_location,
+      </if>
+      <if test="logNote != null" >
+        log_note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        #{logId,jdbcType=INTEGER},
+      </if>
+      <if test="logLevel != null" >
+        #{logLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="logCategory != null" >
+        #{logCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="logThread != null" >
+        #{logThread,jdbcType=VARCHAR},
+      </if>
+      <if test="logTime != null" >
+        #{logTime,jdbcType=VARCHAR},
+      </if>
+      <if test="logLocation != null" >
+        #{logLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="logNote != null" >
+        #{logNote,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wzk.mvc.model.LogIcecoldmonitor" >
+    update log_icecoldmonitor
+    <set >
+      <if test="logLevel != null" >
+        log_level = #{logLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="logCategory != null" >
+        log_category = #{logCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="logThread != null" >
+        log_thread = #{logThread,jdbcType=VARCHAR},
+      </if>
+      <if test="logTime != null" >
+        log_time = #{logTime,jdbcType=VARCHAR},
+      </if>
+      <if test="logLocation != null" >
+        log_location = #{logLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="logNote != null" >
+        log_note = #{logNote,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where log_Id = #{logId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wzk.mvc.model.LogIcecoldmonitor" >
+    update log_icecoldmonitor
+    set log_level = #{logLevel,jdbcType=VARCHAR},
+      log_category = #{logCategory,jdbcType=VARCHAR},
+      log_thread = #{logThread,jdbcType=VARCHAR},
+      log_time = #{logTime,jdbcType=VARCHAR},
+      log_location = #{logLocation,jdbcType=VARCHAR},
+      log_note = #{logNote,jdbcType=LONGVARCHAR}
+    where log_Id = #{logId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wzk.mvc.model.LogIcecoldmonitor" >
+    update log_icecoldmonitor
+    set log_level = #{logLevel,jdbcType=VARCHAR},
+      log_category = #{logCategory,jdbcType=VARCHAR},
+      log_thread = #{logThread,jdbcType=VARCHAR},
+      log_time = #{logTime,jdbcType=VARCHAR},
+      log_location = #{logLocation,jdbcType=VARCHAR}
+    where log_Id = #{logId,jdbcType=INTEGER}
+  </update>
+</mapper>
