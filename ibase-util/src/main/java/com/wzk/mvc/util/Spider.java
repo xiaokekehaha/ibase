@@ -19,7 +19,7 @@ import org.jsoup.nodes.Document;
 
 public class Spider {
 	public static void main(String[] args) {
-		/*适用时间15:00-17:00*/
+		/*适用时间15:00-17:00*/   
 		//http://kaijiang.500.com/ssc.shtml
 		//
 		Spider.getMoney();
