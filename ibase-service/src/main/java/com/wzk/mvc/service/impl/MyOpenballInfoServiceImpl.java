@@ -33,8 +33,8 @@ public class MyOpenballInfoServiceImpl implements IMyOpenballInfoService{
 	int lastEvenGapNum = 1;// 个位双数连续
 	int lastBigGapNum = 2;// 个位大数连续
 	int lastSmallGapNum = 0;// 个位小数连续
-	int lastPrimeGapNum = 0;//个位质数间隔
-	int lastCompositeGapNum = 0;//个位合数间隔
+	int lastPrimeGapNum = 0;//个位质数连续
+	int lastCompositeGapNum = 0;//个位合数连续
 	int lastEvenOddGapNum = 1;// 个位单双连续
 	int lastBigSmallGapNum = 0;// 个位大小连续
 	boolean preLastEvenOddFlag = true;// 个位单双连续标识 上期单：true 双：false
@@ -44,8 +44,8 @@ public class MyOpenballInfoServiceImpl implements IMyOpenballInfoService{
 	int fourthEvenGapNum = 1;// 十位双数连续
 	int fourthBigGapNum = 1;// 十位大数连续
 	int fourthSmallGapNum = 0;// 十位小数连续
-	int fourthPrimeGapNum = 0;//十位质数间隔
-	int fourthCompositeGapNum = 0;//十位合数间隔
+	int fourthPrimeGapNum = 0;//十位质数连续
+	int fourthCompositeGapNum = 0;//十位合数连续
 	int fourthEvenOddGapNum = 1;// 十位单双连续
 	int fourthBigSmallGapNum = 7;// 十位大小连续
 	boolean preFourthEvenOddFlag = true;// 十位单双连续标识 上期单：true 双：false
@@ -879,16 +879,16 @@ public class MyOpenballInfoServiceImpl implements IMyOpenballInfoService{
 			mesg += "2路已间隔:" + roadTwoGapNum + "\n";
 		}
 		if(lastPrimeGapNum >= 5){
-			mesg += "个位质数已间隔:" + lastPrimeGapNum + "\n";
+			mesg += "个位质数已连续:" + lastPrimeGapNum + "\n";
 		}
 		if(lastCompositeGapNum >= 5){
-			mesg += "个位合数已间隔:" + lastCompositeGapNum + "\n";
+			mesg += "个位合数已连续:" + lastCompositeGapNum + "\n";
 		}
 		if(fourthPrimeGapNum >= 5){
-			mesg += "十位质数已间隔:" + fourthPrimeGapNum + "\n";
+			mesg += "十位质数已连续:" + fourthPrimeGapNum + "\n";
 		}
 		if(fourthCompositeGapNum >= 5){
-			mesg += "十位合数已间隔:" + fourthCompositeGapNum + "\n";
+			mesg += "十位合数已连续:" + fourthCompositeGapNum + "\n";
 		}
 		if(StringUtils.isNotEmpty(mesg)){
 			mesg = "##########第20" + period +"期##########\n###\t开奖号码：" +winNumber +"\t\t###\n推荐关注：\n"+ mesg;
