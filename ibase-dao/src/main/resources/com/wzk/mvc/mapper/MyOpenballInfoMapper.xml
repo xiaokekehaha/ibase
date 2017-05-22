@@ -838,5 +838,4 @@
     from my_openball_info
    order by id desc limit 1
   </select>
-  
 </mapper>

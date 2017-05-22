@@ -14,6 +14,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.wzk.mvc.dao.MyOpenballInfoMapper;
 import com.wzk.mvc.model.MyOpenballInfo;
@@ -899,6 +900,20 @@ public class MyOpenballInfoServiceImpl implements IMyOpenballInfoService{
 		}
 		System.out.println(mesg);
 		myOpenballInfoMapper.insertSelective(myOpencodeInfo);
+	}
+
+	@Override
+	@Transactional(rollbackFor={Exception.class})
+	public void inserttest() {
+		MyOpenballInfo record = new MyOpenballInfo();
+		MyOpenballInfo record2 = new MyOpenballInfo();
+		record.setId(1l);
+		record.setOpencode("45678");
+		record2.setId(2l);
+		record2.setOpencode("123456");
+		myOpenballInfoMapper.updateByPrimaryKey(record);
+		myOpenballInfoMapper.updateByPrimaryKey(record2);
+		
 	}
 
 }

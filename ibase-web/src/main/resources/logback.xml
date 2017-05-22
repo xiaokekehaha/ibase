@@ -11,7 +11,7 @@
 		level="DEBUG" /> -->
 	<logger name="java.sql.PreparedStatement" level="ERROR" />
 	<!-- 配置文件输出路径 -->
-	<property name="logBase" value="/work/www/tomcat/m/A/logs" />
+	<property name="logBase" value="E:/workspace-log/ibase/logs" />
 	<!-- 输出信息到控制台 -->
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
