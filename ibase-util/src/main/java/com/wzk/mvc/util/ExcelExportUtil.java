@@ -10,8 +10,8 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import jxl.Cell;
 import jxl.CellType;
@@ -41,7 +41,7 @@ import jxl.write.biff.RowsExceededException;
  */
 @SuppressWarnings("deprecation")
 public class ExcelExportUtil {
-    private static final Log   log        = LogFactory.getLog(ExcelExportUtil.class);
+    private final static Logger log = LoggerFactory.getLogger(ExcelExportUtil.class);
 
     private Integer            icol       = 0;                                       // 记录列
     private Integer            irow       = -1;                                      // 记录行
@@ -187,7 +187,7 @@ public class ExcelExportUtil {
                     wcfFC));
             }
         } catch (Exception e) {
-            log.error(e);
+            log.error("EXCEL_ADD_ROWS_ERROR",e);
             this.close();
         }
     }
@@ -218,7 +218,7 @@ public class ExcelExportUtil {
                     format, false, i + 1 == strings.length);
             }
         } catch (Exception e) {
-            log.error(e);
+            log.error("EXCEL_ADD_ROWS_ERROR",e);
             this.close();
         }
     }
@@ -276,7 +276,7 @@ public class ExcelExportUtil {
                 if (trow >= 0)
                     wsheet.mergeCells(icol, trow, titleCols + icol - 1, trow);// 设置报表标题
             } catch (Exception e) {
-                log.error(e);
+                log.error("EXCEL_ADD_ROWS_ERROR",e);
                 this.close();
             }
         }

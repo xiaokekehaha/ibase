@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 读取Excel辅助类
@@ -25,7 +25,7 @@ public final class ExcelImortUtil {
 	private ExcelImortUtil() {
 	}
 
-	private static final Log log = LogFactory.getLog(ExcelImortUtil.class);
+	private final static Logger log = LoggerFactory.getLogger(ExcelExportUtil.class);
 
 	/**
 	 * 获取Excel数据,返回List<String[]>

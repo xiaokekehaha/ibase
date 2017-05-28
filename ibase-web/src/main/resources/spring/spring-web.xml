@@ -58,12 +58,12 @@
 		p:prefix="/WEB-INF/pages/" p:suffix=".jsp" />
 
 	<!-- 自定义拦截链配置 -->  
-    <!-- <mvc:interceptors>  
+    <mvc:interceptors>  
      	<mvc:interceptor>  
-            需拦截的地址
+           <!--  需拦截的地址 -->
             <mvc:mapping path="/test/*" />
             <bean class="com.wzk.mvc.interceptor.AuthorizeInterceptor">
-            	允许不拦截的资源
+            	<!-- 允许不拦截的资源 -->
             	<property name="allowUrls">
             		<list>
             			<value>/test/test.htm</value>
@@ -71,5 +71,5 @@
             	</property>
             </bean>  
         </mvc:interceptor>  
-     </mvc:interceptors>  -->
+     </mvc:interceptors> 
 </beans>

@@ -6,8 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -15,6 +13,8 @@ import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.Node;
 import org.dom4j.tree.DefaultElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * XML处理器
@@ -23,7 +23,7 @@ import org.dom4j.tree.DefaultElement;
  */
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public final class XmlUtil {
-	private static Log log = LogFactory.getLog(XmlUtil.class);
+	private final static Logger log = LoggerFactory.getLogger(XmlUtil.class);
 
 	private XmlUtil() {
 	}
@@ -444,7 +444,7 @@ public final class XmlUtil {
 				map.put("countInteger", de.getText());
 			}
 		} catch (Exception e) {
-			log.error(XmlUtil.class, e);
+			log.error("XmlUtil", e);
 		}
 		return map;
 	}
